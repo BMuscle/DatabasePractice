@@ -1,0 +1,5 @@
+﻿  Main.cpp
+  Mysql.cpp
+  コードを生成中...
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+mysqlcppconn8.lib(mysqlcppconn8-2-vs14.dll) : fatal error LNK1112: モジュールのコンピューターの種類 'x64' は対象コンピューターの種類 'x86' と競合しています。

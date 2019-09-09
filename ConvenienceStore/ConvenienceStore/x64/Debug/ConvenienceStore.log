@@ -1,0 +1,5 @@
+﻿  Mysql.cpp
+C:\Users\rk\Documents\GitHub\DatabasePractice\ConvenienceStore\ConvenienceStore\Mysql.cpp(35,30): warning C4101:  'err': ローカル変数は 1 度も使われていません。
+  Main.obj : MSIL モジュールが見つかりました。MSIL ではインクリメンタル リンクは無効化されています。フル リンクを行います
+Mysql.obj : warning LNK4248: 未解決の typeref トークン (01000015) ('mysqlx.abi2.r0.common.Result_init') です。イメージを実行できません。
+  ConvenienceStore.vcxproj -> C:\Users\rk\Documents\GitHub\DatabasePractice\ConvenienceStore\x64\Debug\ConvenienceStore.exe
