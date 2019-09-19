@@ -6,17 +6,24 @@ using namespace::mysqlx;
 
 Mysql::Mysql() {
 	try {
-		Session sess("localhost", "***", "***");
+		Session sess("localhost", "rk221", "1192");
 		//Schema db = sess.getSchema("store");
 		
 		sess.sql("USE store").execute();
-		auto myResult = sess.sql("SELECT name FROM product WHERE price = 150").execute();
+		auto myResult = sess.sql("SELECT name FROM product WHERE >= 150").execute();
 
-		
+
+
+		/* —á
 		Row row = myResult.fetchOne();
-		string s = row.get(0);
-		bytes code = row.getBytes(0);
-		std::cout << s;
+		std::cout << row.get(0);
+
+		auto myResult = sess.sql("SELECT name FROM product WHERE >= 150").execute();
+		for (auto r : myResult) {
+			std::cout << r.get(0);
+		}
+		*/
+
 
 		sess.close();
 			

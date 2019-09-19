@@ -9,7 +9,7 @@ using namespace ConvenienceStore;
 
 [STAThreadAttribute]
 int main() {
-	SetConsoleOutputCP(CP_UTF8);
+	SetConsoleOutputCP(CP_UTF8);//コンソールのUTF8表示
 
 	Mysql* sql = new Mysql();
 
