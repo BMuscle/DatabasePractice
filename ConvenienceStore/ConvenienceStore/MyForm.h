@@ -1,4 +1,6 @@
 #pragma once
+#include <msclr/marshal_cppstd.h>
+#include "Mysql.h"
 
 namespace ConvenienceStore {
 
@@ -108,7 +110,7 @@ namespace ConvenienceStore {
 			// 
 			// linkbutton
 			// 
-			this->linkbutton->Location = System::Drawing::Point(243, 150);
+			this->linkbutton->Location = System::Drawing::Point(477, 339);
 			this->linkbutton->Name = L"linkbutton";
 			this->linkbutton->Size = System::Drawing::Size(251, 111);
 			this->linkbutton->TabIndex = 4;

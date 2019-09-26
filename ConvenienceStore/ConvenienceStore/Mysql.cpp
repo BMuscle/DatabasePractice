@@ -1,16 +1,14 @@
 #include "Mysql.h"
-#include "mysqlx/xdevapi.h"
-#include <iostream>
-#include <stdio.h>
+
 using namespace::mysqlx;
 
 Mysql::Mysql() {
 	try {
-		Session sess("localhost", "rk221", "1192");
+		Session sess("localhost", "name", "pass");
 		//Schema db = sess.getSchema("store");
 		
 		sess.sql("USE store").execute();
-		auto myResult = sess.sql("SELECT name FROM product WHERE >= 150").execute();
+		auto myResult = sess.sql("SELECT name FROM product WHERE price >= 150").execute();
 
 
 
@@ -18,7 +16,7 @@ Mysql::Mysql() {
 		Row row = myResult.fetchOne();
 		std::cout << row.get(0);
 
-		auto myResult = sess.sql("SELECT name FROM product WHERE >= 150").execute();
+		auto myResult = sess.sql("SELECT name FROM product WHERE price >= 150").execute();
 		for (auto r : myResult) {
 			std::cout << r.get(0);
 		}
@@ -32,6 +30,32 @@ Mysql::Mysql() {
 		std::cout << err << std::endl;
 	}
 
+}
+
+void Mysql::sql(std::vector<System::String>& data) {
+	Session sess("localhost", "name", "pass");
+	sess.sql("USE store").execute();
+	auto myResult = sess.sql("SELECT name FROM product WHERE >= 150").execute();
+	for (auto r : myResult) {
+		data.push_back(encodeString((std::string)r.get(0)));
+	}
+}
+
+
+System::String^ Mysql::encodeString(std::string str) {
+	std::string cpp_string = str;
+
+	// 型の変換
+	array<unsigned char>^ c_array = gcnew array<unsigned char>(cpp_string.length());
+	for (int i = 0; i < cpp_string.length(); i++)
+	{
+		c_array[i] = cpp_string[i];
+	}
+
+	// .NETのライブラリでバイト配列(
+	System::Text::Encoding^ u8enc = System::Text::Encoding::UTF8;
+	System::String^ u8_array = u8enc->GetString(c_array);
+	return u8_array;
 }
 
 /*
