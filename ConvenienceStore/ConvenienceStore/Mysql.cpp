@@ -32,6 +32,7 @@ Mysql::Mysql() {
 
 }
 
+/*
 void Mysql::sql(std::vector<System::String>& data) {
 	Session sess("localhost", "name", "pass");
 	sess.sql("USE store").execute();
@@ -41,7 +42,16 @@ void Mysql::sql(std::vector<System::String>& data) {
 	}
 }
 
-
+*/
+void Mysql::sql(std::vector<std::string>& data) {
+	Session sess("localhost", "name", "pass");
+	sess.sql("USE store").execute();
+	auto myResult = sess.sql("SELECT name FROM product WHERE price >= 150").execute();
+	for (auto r : myResult) {
+		data.push_back((std::string)r.get(0));
+	}
+	sess.close();
+}
 System::String^ Mysql::encodeString(std::string str) {
 	std::string cpp_string = str;
 

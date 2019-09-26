@@ -1,3 +1,4 @@
 ﻿  Mysql.cpp
-Mysql.obj : warning LNK4248: 未解決の typeref トークン (01000015) ('mysqlx.abi2.r0.common.Result_init') です。イメージを実行できません。
+C:\Users\rk\Documents\GitHub\DatabasePractice\ConvenienceStore\ConvenienceStore\Mysql.cpp(59,81): warning C4267:  '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+Mysql.obj : warning LNK4248: 未解決の typeref トークン (01000016) ('mysqlx.abi2.r0.common.Result_init') です。イメージを実行できません。
   ConvenienceStore.vcxproj -> C:\Users\rk\Documents\GitHub\DatabasePractice\ConvenienceStore\x64\Release\ConvenienceStore.exe

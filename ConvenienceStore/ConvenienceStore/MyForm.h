@@ -1,6 +1,7 @@
 #pragma once
 #include <msclr/marshal_cppstd.h>
 #include "Mysql.h"
+#include <vector>
 
 namespace ConvenienceStore {
 
@@ -38,13 +39,14 @@ namespace ConvenienceStore {
 		}
 	private: System::Windows::Forms::Button^ bt1;
 	private: System::Windows::Forms::Label^ titlelb;
+	private: System::Windows::Forms::CheckedListBox^ productList;
 
 
 	protected:
 
 	protected:
 
-	private: System::Windows::Forms::CheckedListBox^ checkedListBox1;
+
 	private: System::Windows::Forms::Label^ debuglb;
 
 	private: System::Windows::Forms::Button^ linkbutton;
@@ -64,7 +66,7 @@ namespace ConvenienceStore {
 		{
 			this->bt1 = (gcnew System::Windows::Forms::Button());
 			this->titlelb = (gcnew System::Windows::Forms::Label());
-			this->checkedListBox1 = (gcnew System::Windows::Forms::CheckedListBox());
+			this->productList = (gcnew System::Windows::Forms::CheckedListBox());
 			this->debuglb = (gcnew System::Windows::Forms::Label());
 			this->linkbutton = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
@@ -91,13 +93,14 @@ namespace ConvenienceStore {
 			this->titlelb->Text = L"¤•iİŒÉ’Ç‰Á";
 			this->titlelb->Click += gcnew System::EventHandler(this, &MyForm::Label1_Click);
 			// 
-			// checkedListBox1
+			// productList
 			// 
-			this->checkedListBox1->FormattingEnabled = true;
-			this->checkedListBox1->Location = System::Drawing::Point(41, 339);
-			this->checkedListBox1->Name = L"checkedListBox1";
-			this->checkedListBox1->Size = System::Drawing::Size(249, 180);
-			this->checkedListBox1->TabIndex = 2;
+			this->productList->FormattingEnabled = true;
+			this->productList->Items->AddRange(gcnew cli::array< System::Object^  >(1) { L"none" });
+			this->productList->Location = System::Drawing::Point(41, 339);
+			this->productList->Name = L"productList";
+			this->productList->Size = System::Drawing::Size(249, 180);
+			this->productList->TabIndex = 2;
 			// 
 			// debuglb
 			// 
@@ -125,7 +128,7 @@ namespace ConvenienceStore {
 			this->ClientSize = System::Drawing::Size(1058, 664);
 			this->Controls->Add(this->linkbutton);
 			this->Controls->Add(this->debuglb);
-			this->Controls->Add(this->checkedListBox1);
+			this->Controls->Add(this->productList);
 			this->Controls->Add(this->titlelb);
 			this->Controls->Add(this->bt1);
 			this->Name = L"MyForm";
@@ -144,6 +147,16 @@ namespace ConvenienceStore {
 	}
 	private: System::Void Linkbutton_Click(System::Object^ sender, System::EventArgs^ e) {
 		//“¯Šúƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Ìˆ—
+		std::vector<std::string> data;
+		Mysql* mysql = new Mysql();
+		mysql->sql(data);
+
+		productList->Items->Clear();
+		for (int i = 0; i < data.size(); i++) {
+			productList->Items->Add(mysql->encodeString(data.at(i)));
+		}
+		
 	}
+
 };
 }
